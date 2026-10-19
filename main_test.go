@@ -75,12 +75,10 @@ func TestCafeCount(t *testing.T) {
 		require.Equal(t, http.StatusOK, res.Code)
 
 		if res.Body.String() == "" {
-			fmt.Printf("expected %d, got %d\n", v.want, len(res.Body.String()))
-			assert.Equal(t, v.want, len(res.Body.String()))
+			assert.Equalf(t, v.want, len(res.Body.String()), "expected %d, got %d\n", v.want, len(res.Body.String()))
 			continue
 		}
-		fmt.Printf("expected %d, got %d\n", v.want, len(strings.Split(res.Body.String(), ",")))
-		assert.Equal(t, v.want, len(strings.Split(res.Body.String(), ",")))
+		assert.Equalf(t, v.want, len(strings.Split(res.Body.String(), ",")), "expected %d, got %d\n", v.want, len(strings.Split(res.Body.String(), ",")))
 
 	}
 
@@ -115,8 +113,7 @@ func TestCafeSearch(t *testing.T) {
 				foundedCafeList = append(foundedCafeList, name)
 			}
 		}
-		fmt.Printf("expected count cafe %d, got count %d\n", v.wantCount, len(foundedCafeList))
-		assert.Equal(t, v.wantCount, len(foundedCafeList))
+		assert.Equalf(t, v.wantCount, len(foundedCafeList), "expected count cafe %d, got count %d\n", v.wantCount, len(foundedCafeList))
 
 	}
 }
